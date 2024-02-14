@@ -36,7 +36,7 @@ const Create = () => {
       postExample(data);
     },
     onSuccess: (data) => {
-      navigate("/");
+      navigate("/home");
       toast.success("Data Added Successfully!");
     },
     onError: (error) => {

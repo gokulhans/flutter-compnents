@@ -9,7 +9,7 @@ import DarkModeToggler from "../DarkModeToggler/DarkModeToggler";
 const Navbar = () => {
   return (
     <>
-      <header className="fixed top-0 left-0 flex h-16 w-full shrink-0 items-center px-4 md:px-6 z-50 bg-white dark:gray-900">
+      <header className="fixed top-0 left-0 flex h-16 w-full shrink-0 items-center px-4 md:px-6 z-50 bg-white dark:bg-gray-900">
         <Link className="mr-6 flex items-center" to={"/"}>
           <span className="ml-2 text-lg font-semibold">
             <h2 className="font-bold">Flutter Blocks</h2>
@@ -19,6 +19,7 @@ const Navbar = () => {
           <Button>
             <Link to={"/create"}>Create Block</Link>
           </Button>
+          <DarkModeToggler></DarkModeToggler>
         </div>
       </header>
     </>

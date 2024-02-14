@@ -8,6 +8,7 @@ const Home = () => {
 
   const fetchBlocks = async () => {
     const response = await axiosClient.get("/block");
+    setfilteredBlocks(response.data.data);
     return response.data.data;
   };
 
@@ -44,6 +45,22 @@ const Home = () => {
     }
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredBlocks, setfilteredBlocks] = useState([]);
+
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      if (blocks) {
+        setfilteredBlocks(
+          blocks.filter((block) =>
+            block.name.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        );
+      }
+    }, 1000);
+    return () => clearTimeout(getData);
+  }, [searchTerm]);
+
   if (isLoading) {
     return (
       <>
@@ -61,12 +78,30 @@ const Home = () => {
   return (
     <>
       <div className="flex flex-col align-center justify-center w-full">
-        {blocks.length != 0 ? (
-          blocks.map((block) => (
-            <div className="grid md:grid-cols-3 items-center justify-center gap-4 p-4 md:gap-8 border border-gray-200 shadow-lg rounded-lg dark:border-gray-800 m-8">
+        <div className="container mx-auto p-4 max-w-4xl">
+          <center className="self-center text-5xl my-8 font-bold text-black dark:text-gray-100">
+            <b>Search Flutter Blocks</b>
+          </center>
+          <center>
+            <input
+              type="text"
+              placeholder={"Search Blocks"}
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              className="mb-4 p-5 flex w-full focus:outline-none bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-900 dark:border-gray-700 "
+            />
+          </center>
+        </div>
+
+        {filteredBlocks.length != 0 ? (
+          filteredBlocks.map((block) => (
+            <div
+              key={block._id}
+              className="grid md:grid-cols-3 items-center justify-center gap-4 p-4 md:gap-8 border border-gray-200 shadow-lg rounded-lg dark:border-gray-700 m-8"
+            >
               <div className="flex items-center justify-center p-6 md:col-span-2">
-                <div key={block._id} className="block m-5 h-[600px]">
-                  <h1 className="font-bold text-3xl text-gray-900">
+                <div className="block m-5 h-[600px]">
+                  <h1 className="font-bold text-3xl text-gray-900 dark:text-white">
                     {block.name} <br />
                   </h1>
                   <div className="relative max-w-2xl h-[500px] overflow-scroll mx-auto mt-8">
@@ -74,7 +109,7 @@ const Home = () => {
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-gray-400"></span>
                         <button
-                          className="code bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1 rounded-md"
+                          className="code bg-gray-700 hover:bg-gray-700 text-gray-300 px-3 py-1 rounded-md"
                           onClick={() => handleCopy(block.code)}
                         >
                           Copy
@@ -96,12 +131,12 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex items-center justify-center p-6 md:col-span-1">
-                <div className="my-5 relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[340px] shadow-xl">
-                  <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute" />
-                  <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg" />
-                  <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg" />
-                  <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg" />
-                  <div className="rounded-[2rem] overflow-hidden w-[312px] h-[572px] bg-white dark:bg-gray-800">
+                <div className="my-5 relative mx-auto border-gray-700 dark:border-gray-700 bg-gray-700 border-[14px] rounded-[2.5rem] h-[600px] w-[340px] shadow-xl">
+                  <div className="w-[148px] h-[18px] bg-gray-700 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute" />
+                  <div className="h-[46px] w-[3px] bg-gray-700 absolute -start-[17px] top-[124px] rounded-s-lg" />
+                  <div className="h-[46px] w-[3px] bg-gray-700 absolute -start-[17px] top-[178px] rounded-s-lg" />
+                  <div className="h-[64px] w-[3px] bg-gray-700 absolute -end-[17px] top-[142px] rounded-e-lg" />
+                  <div className="rounded-[2rem] overflow-hidden w-[312px] h-[572px] bg-white dark:bg-gray-700">
                     <iframe
                       src="https://za34060pa350.zapp.page/#/"
                       style={{
@@ -110,7 +145,6 @@ const Home = () => {
                         border: 0,
                         overflow: "hidden",
                       }}
-                      c
                     />
                   </div>
                 </div>

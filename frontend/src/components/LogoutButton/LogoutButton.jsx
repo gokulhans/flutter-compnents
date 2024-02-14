@@ -8,7 +8,7 @@ const LogoutButton = ({ setIsUser }) => {
     localStorage.clear();
     setIsUser(false);
     toast.success("Logout Successfully!");
-    navigate("/");
+    navigate("/home");
   };
 
   return (

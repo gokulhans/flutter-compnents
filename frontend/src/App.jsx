@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Create from "./pages/Create/Create";
+import Landing from "./pages/Landing/Landing";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <div className="pt-16 min-h-screen flex flex-col items-center justify-center">
           <Routes>
             <>
-              <Route exact path="/" element={<Home />} />
+              <Route exact path="/" element={<Landing />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/create" element={<Create />} />
               <Route path="*" element={<Navigate to={"/"} />} />
             </>
