@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosClient from "@/util/axios";
 import toast from "react-hot-toast";
+import Shimmer from "@/components/Shimmer/Shimmer";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const queryClient = useQueryClient();
@@ -64,8 +67,10 @@ const Home = () => {
   if (isLoading) {
     return (
       <>
-        <div className="w-full max-w-3xl sm:pt-8 p-4 pt-6 sm:px-0 flex justify-center">
-          Loading
+        <div className="w-full h-screen px-24 py-12">
+          <Shimmer />
+          <Shimmer />
+          <Shimmer />
         </div>
       </>
     );
@@ -97,55 +102,72 @@ const Home = () => {
           filteredBlocks.map((block) => (
             <div
               key={block._id}
-              className="grid md:grid-cols-3 items-center justify-center gap-4 p-4 md:gap-8 border border-gray-200 shadow-lg rounded-lg dark:border-gray-700 m-8"
+              className="p-8 border border-gray-200 shadow-lg rounded-lg dark:border-gray-700 m-8"
             >
-              <div className="flex items-center justify-center p-6 md:col-span-2">
-                <div className="block m-5 h-[600px]">
-                  <h1 className="font-bold text-3xl text-gray-900 dark:text-white">
-                    {block.name} <br />
-                  </h1>
-                  <div className="relative max-w-2xl h-[500px] overflow-scroll mx-auto mt-8">
-                    <div className="bg-gray-900 text-white p-4 rounded-md">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-400"></span>
-                        <button
-                          className="code bg-gray-700 hover:bg-gray-700 text-gray-300 px-3 py-1 rounded-md"
-                          onClick={() => handleCopy(block.code)}
-                        >
-                          Copy
-                        </button>
-                      </div>
-                      <div className="overflow-x-auto">
-                        <pre id="code" className="text-gray-300">
-                          <code>{block.code}</code>
-                        </pre>
+              <div className="flex justify-between">
+                <h1 className="font-bold text-3xl text-gray-900 dark:text-white">
+                  {block.name}
+                </h1>
+                <h1 className="font-bold text-3xl text-gray-900 dark:text-white">
+                  <Link to={`/block/${block._id}`}>
+                    <Button
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                      variant="solid"
+                    >
+                      Edit Live With Zapp
+                    </Button>
+                  </Link>
+
+                  <br />
+                </h1>
+              </div>
+              <div className="grid md:grid-cols-3 items-center justify-center gap-4 md:gap-8 ">
+                <div className="flex items-center justify-center p-6 md:col-span-2">
+                  <div className="block m-5 h-[600px]">
+                    <div className="relative max-w-2xl h-[600px] overflow-scroll mx-auto">
+                      <div className="bg-gray-900 text-white p-4 rounded-md">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-gray-400"></span>
+                          <button
+                            className="code bg-gray-700 hover:bg-gray-700 text-gray-300 px-3 py-1 rounded-md"
+                            onClick={() => handleCopy(block.code)}
+                          >
+                            Copy
+                          </button>
+                        </div>
+        <div className="w-full h-full overflow-hidden">
+          <pre id="code" className="text-gray-300  w-full h-full overflow-y-scroll pr-17 box-content">
+            <code>{block.code}</code>
+          </pre>
+        </div>
+
                       </div>
                     </div>
-                  </div>
-                  {/* <button
+                    {/* <button
                     className="text-red-700"
                     onClick={() => handleDelete(block._id)}
                   >
                     Delete
                   </button> */}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center justify-center p-6 md:col-span-1">
-                <div className="my-5 relative mx-auto border-gray-700 dark:border-gray-700 bg-gray-700 border-[14px] rounded-[2.5rem] h-[600px] w-[340px] shadow-xl">
-                  <div className="w-[148px] h-[18px] bg-gray-700 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute" />
-                  <div className="h-[46px] w-[3px] bg-gray-700 absolute -start-[17px] top-[124px] rounded-s-lg" />
-                  <div className="h-[46px] w-[3px] bg-gray-700 absolute -start-[17px] top-[178px] rounded-s-lg" />
-                  <div className="h-[64px] w-[3px] bg-gray-700 absolute -end-[17px] top-[142px] rounded-e-lg" />
-                  <div className="rounded-[2rem] overflow-hidden w-[312px] h-[572px] bg-white dark:bg-gray-700">
-                    <iframe
-                      src="https://za34060pa350.zapp.page/#/"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        border: 0,
-                        overflow: "hidden",
-                      }}
-                    />
+                <div className="flex items-center justify-center p-6 md:col-span-1">
+                  <div className="my-5 relative mx-auto border-gray-700 dark:border-gray-700 bg-gray-700 border-[14px] rounded-[2.5rem] h-[600px] w-[340px] shadow-xl">
+                    <div className="w-[148px] h-[18px] bg-gray-700 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute" />
+                    <div className="h-[46px] w-[3px] bg-gray-700 absolute -start-[17px] top-[124px] rounded-s-lg" />
+                    <div className="h-[46px] w-[3px] bg-gray-700 absolute -start-[17px] top-[178px] rounded-s-lg" />
+                    <div className="h-[64px] w-[3px] bg-gray-700 absolute -end-[17px] top-[142px] rounded-e-lg" />
+                    <div className="rounded-[2rem] overflow-hidden w-[312px] h-[572px] bg-white dark:bg-gray-700">
+                      <iframe
+                        src={block.link}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          border: 0,
+                          overflow: "hidden",
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

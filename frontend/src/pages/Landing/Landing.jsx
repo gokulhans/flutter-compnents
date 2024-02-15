@@ -8,40 +8,30 @@ const Landing = () => {
     <>
       <div className="flex flex-col min-h-[100dvh]">
         <main className="flex-1">
-          <section className="w-full py-6 sm:py-12 md:py-24 lg:py-32">
+          <section className="w-full py-12 md:py-24 lg:py-32">
             <div className="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6">
-              <div className="space-y-2 text-center">
-                <h1 className="self-center text-5xl my-8 font-bold text-black dark:text-white">
-                  <b> Flutter Code Blocks </b>
+              <center className="space-y-2 text-center flex flex-col justify-center">
+                <h1 className="self-center px-5 border rounded-full py-2 bg-gray-50 dark:bg-gray-800 text-lg my-8 font-bold text-black dark:text-white">
+                  Flutter Code Blocks
                 </h1>
-                <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl py-2">
+                  <b className="tracking-tight">
+                    Share your snippets. Discover new widgets.
+                  </b>
+                </h2>
+                <center className="py-2 max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 text-center self-center">
                   The open-source platform for sharing and discovering Flutter
-                  code snippets.
-                </p>
+                  code snippets. Build Apps even faster with components on top of Flutter
+                </center>
                 <center>
                   <Button>
                     <Link to={"/home"}>Discover Flutter Code Blocks</Link>
                   </Button>
                 </center>
-              </div>
-            </div>
-          </section>
-          <section className="w-full py-12 md:py-24 lg:py-32">
-            <div className="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6">
-              <center className="space-y-2 text-center flex flex-col justify-center">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Share your snippets. Discover new widgets.
-                </h2>
-                <center className="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 text-center self-center">
-                  The platform for rapid progress. Let your team focus on
-                  shipping features instead of managing infrastructure with
-                  automated CI/CD, built-in testing, and integrated
-                  collaboration.
-                </center>
               </center>
             </div>
           </section>
-          <section className="w-full py-12 md:py-24 lg:py-32">
+          {/* <section className="w-full py-12 md:py-24 lg:py-32">
             <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -96,8 +86,8 @@ const Landing = () => {
                 </p>
               </div>
             </div>
-          </section>
-          <section className="w-full py-12 md:py-24 lg:py-32 border-t">
+          </section> */}
+          {/* <section className="w-full py-12 md:py-24 lg:py-32 border-t">
             <div className="container px-4 md:px-6">
               <div className="grid gap-10 sm:px-10 md:gap-16 md:grid-cols-2">
                 <div className="space-y-4">
@@ -133,7 +123,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </main>
       </div>
     </>

@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Create from "./pages/Create/Create";
 import Landing from "./pages/Landing/Landing";
+import SingleBlock from "./pages/SingleBlock/SingleBlock";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route exact path="/" element={<Landing />} />
               <Route path="/home" element={<Home />} />
               <Route path="/create" element={<Create />} />
+              <Route path="/block/:id" element={<SingleBlock />} />
               <Route path="*" element={<Navigate to={"/"} />} />
             </>
           </Routes>
