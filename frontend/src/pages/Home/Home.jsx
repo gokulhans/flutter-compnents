@@ -135,12 +135,9 @@ const Home = () => {
                             Copy
                           </button>
                         </div>
-        <div className="w-full h-full overflow-hidden">
-          <pre id="code" className="text-gray-300  w-full h-full overflow-y-scroll pr-17 box-content">
-            <code>{block.code}</code>
-          </pre>
-        </div>
-
+                        <pre id="code" className="text-gray-300">
+                          <code>{block.code}</code>
+                        </pre>
                       </div>
                     </div>
                     {/* <button
